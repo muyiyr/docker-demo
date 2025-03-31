@@ -1,0 +1,23 @@
+name: CI/CD Pipeline
+on:
+    push:
+        branches:
+            - main
+jobs:
+    build:
+        runs-on: ubuntu-latest # 使用最新的 Ubuntu 镜像
+        steps:
+            - name: Checkout code # 检出代码
+              uses: actions/checkout@v2 # 使用 GitHub Actions 的检查代码功能
+            - name: Set up Node.js # 设置 Node.js 环境
+              uses: actions/setup-node@v2 # 使用 GitHub Actions 的 Node.js 设置功能
+              with:
+                  node-version: "16" # 使用 Node.js 版本 16
+            - name: Install dependencies # 安装依赖
+              run: npm install # 执行 npm install 命令以安装依赖
+            - name: Build application # 构建应用
+              run: npm run build # 执行 npm run build 命令以构建应用
+            - name: Run tests # 运行测试
+              run: npm test # 执行 npm test 命令以运行测试
+            - name: Deploy to production # 部署到生产环境
+              run: echo "Deploy scripts here" # 在此处放置部署脚本
